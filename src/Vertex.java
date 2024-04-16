@@ -15,7 +15,7 @@ public class Vertex {
 
     // Edge inner class.
     public static class Edge {
-        // private int startVertex; // Not needed due to Vertex outer class.
+        // private Vertex startVertex; // Not needed due to Vertex outer class.
         private Vertex endVertex;
         private double weight;
 
@@ -31,13 +31,14 @@ public class Vertex {
             return weight;
         }
 
+        /*
         public void setEndVertex(Vertex endVertex) {
             this.endVertex = endVertex;
         }
 
         public void setWeight(double weight) {
             this.weight = weight;
-        }
+        }*/
     }
 
     public int getItem() {
@@ -67,7 +68,7 @@ public class Vertex {
     /** Connects this vertex to a given edge.
      * The two vertices cannot be the same, and must not already
      * have this edge between them. */
-    public boolean connect(Vertex.Edge e) {
+    /*public boolean connect(Vertex.Edge e) {
         Vertex endVertex = e.getEndVertex();
         double edgeWeight = e.getWeight();
 
@@ -85,7 +86,7 @@ public class Vertex {
         // Add the new edge
         edges.add(e);
         return true;
-    }
+    }*/
 
     public ArrayList<Edge> getEdges() {
         return edges;

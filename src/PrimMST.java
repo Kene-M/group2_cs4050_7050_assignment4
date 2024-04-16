@@ -7,7 +7,7 @@ public class PrimMST {
         ArrayList<Vertex> vertices = graph.getVertices();
         double[] keys = new double[size]; // The current weight of a vertex.
         keys[source] = 0; // Assign starting vertex with a weight of 0;
-        int[] parent = new int[size]; // Array to store constructed MST
+        int[] parent = new int[size]; // Array to store the parent of each vertex in MST.
 
         // minHeap represents set E
         Heap pq = new Heap();
@@ -36,16 +36,12 @@ public class PrimMST {
             for(Vertex.Edge e: edges) {
                 int adjVIndex = e.getEndVertex().getId();
 
-
-                // If v is not yet included in MST and weight of
-                // u-v is less than key value of v, then update
-                // key value and parent of v
-
-                // If v is not yet included in MST, perform relaxation procedure / decrease key on edge. i.e: If weight of
-                // vertex-endVertex (v) is less than curr weight of v, then update weight of v.
+                // If v is not yet included in MST, perform relaxation procedure/decrease
+                // key on edge. i.e: If weight of vertex-endVertex(v) edge
+                // is less than curr weight of v, then update weight and parent of v.
                 if (pq.in_heap(adjVIndex) && e.getWeight() < pq.key(adjVIndex)) {
                     double newKey = e.getWeight();
-                    parent[adjVIndex] = vIndex; // Update
+                    parent[adjVIndex] = vIndex; // Update parent vertex for v
                     pq.decrease_key(adjVIndex, newKey);
                 }
             }
@@ -57,10 +53,6 @@ public class PrimMST {
     // A utility function used to print the constructed MST
     public static void printMST(Graph graph, int[] parent, int sourceV, int size)
     {
-        /*for (int i = 1; i < size; i++) {
-            System.out.println(parent[i] + " - " + i);
-        }*/
-
         System.out.println("\nPrim's algorithm - Adjacency edge list representation:");
         ArrayList<Vertex> vertices = graph.getVertices();
         double cost = 0.0;

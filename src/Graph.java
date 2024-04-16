@@ -2,16 +2,20 @@ import java.io.File;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/*
+    Graph implemented using an adjacency list.
+ */
 public class Graph {
-    private ArrayList<Vertex> vertices;
+    private ArrayList<Vertex> vertices; // Adjacency list.
 
-    /*
-        Initializes the list of vertices.
-     */
+    // Initializes the adjacency list of vertices.
     public Graph (int numVertices) {
         vertices = new ArrayList<>(numVertices);
     }
 
+    /*
+    Initializes a graph given a file.
+     */
     public void initGraph(File inputFile, Scanner scnr) {
         // Check for end of file.
         while(scnr.hasNextLine()) {
@@ -28,27 +32,6 @@ public class Graph {
         }
 
         scnr.close();
-    }
-
-    // This function adds a new vertex.
-    public void add(int vertex) {
-        boolean vertexFound = false;
-        int vertexIndex = -1;
-
-        // Find the vertex and its index, if it exists
-        for (int i = 0; (i < vertices.size()) && !vertexFound; i++) {
-            if (vertices.get(i).getItem() == vertex) {
-                vertexFound = true;
-                vertexIndex = i;
-            }
-        }
-        // Create vertex if it doesn't exist.
-        if (!vertexFound) {
-            Vertex newVertex = new Vertex(vertex);
-            vertices.add(newVertex);
-            vertexIndex = vertices.size() - 1;
-            newVertex.setId(vertexIndex);
-        }
     }
 
     /*
@@ -95,11 +78,32 @@ public class Graph {
         vertices.get(vertex2Index).connect(vertices.get(vertex1Index), weight);
     }
 
+    // This function adds a new vertex.
+    public void add(int vertex) {
+        boolean vertexFound = false;
+        int vertexIndex = -1;
+
+        // Find the vertex and its index, if it exists
+        for (int i = 0; (i < vertices.size()) && !vertexFound; i++) {
+            if (vertices.get(i).getItem() == vertex) {
+                vertexFound = true;
+                vertexIndex = i;
+            }
+        }
+        // Create vertex if it doesn't exist.
+        if (!vertexFound) {
+            Vertex newVertex = new Vertex(vertex);
+            vertices.add(newVertex);
+            vertexIndex = vertices.size() - 1;
+            newVertex.setId(vertexIndex);
+        }
+    }
+
     /*
         This function adds an already created edge to the vertices in both directions.
         It first checks to see if the vertices exist or not.
      */
-    public void add(int vertex1, Vertex.Edge e) {
+    /*public void add(int vertex1, Vertex.Edge e) {
         int vertex2 = e.getEndVertex().getItem();
 
         if (vertex1 == vertex2)
@@ -139,7 +143,7 @@ public class Graph {
         // Add edges both ways.
         vertices.get(vertex1Index).connect(e);
         vertices.get(vertex2Index).connect(e);
-    }
+    }*/
 
     public ArrayList<Vertex> getVertices() {
         return vertices;

@@ -33,6 +33,9 @@ public class Heap {
             return this.edge;
         }
         public void setEdge(Vertex.Edge e) {
+            //TODO remove
+            System.out.println("Edge  " + e.getEndVertex().getItem() + " - Weight - " +
+                    e.getWeight());
             this.edge = e;
         }
     }
@@ -55,6 +58,7 @@ public class Heap {
         int i = 0;
         while (i < n) {
             heap[i + 1] = new HeapElement(i, keys[i], null);
+
             vertexInfo[i] = heap[i + 1];
             positions[i] = i + 1;
             i++;
@@ -98,7 +102,8 @@ public class Heap {
 
     // returns the key of the element whose id is id in the heap;
     public double key(int id) {
-        return vertexInfo[id].key;
+        return heap[positions[id]].key;
+        //return vertexInfo[id].key;
         // return keys[id];
     }
 
@@ -185,6 +190,7 @@ public class Heap {
     }
 
     public void setEdge(int id, Vertex.Edge e) {
+        System.out.println(inHeap[id]);
         vertexInfo[id].setEdge(e);
     }
 }

@@ -27,10 +27,11 @@ public class Main {
         graph.printGraph();
         System.out.println();
 
-        // TODO Debug
         // Prim's Algorithm, output edges (and weights) of the minimum spanning tree.
-        Graph primMST = PrimMST.getPrimMST(graph, numVertices);
-        System.out.print("\nPrim's algorithm - ");
-        primMST.printGraph();
+
+        // Graph primMST = PrimMST.getPrimMST(graph, numVertices);
+        int root = 0; // The index of the root in the graph/tree.
+        int[] parent = PrimMST.getPrimMST(graph, root, numVertices);
+        PrimMST.printMST(graph, parent, root, numVertices);
     }
 }
